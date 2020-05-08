@@ -4,10 +4,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import main.App;
 
 public class ControleurVueAffecterMembres implements Initializable{
 
@@ -24,7 +24,7 @@ public class ControleurVueAffecterMembres implements Initializable{
 	private ComboBox<String> cbxMembre;
 	
 	@FXML
-	private MainApp mainApp;
+	private App mainApp;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -32,7 +32,7 @@ public class ControleurVueAffecterMembres implements Initializable{
 		
 	}
 	
-	public void setMainApp(MainApp mainApp) {
+	public void setMainApp(App mainApp) {
         this.mainApp = mainApp;
     }
 	

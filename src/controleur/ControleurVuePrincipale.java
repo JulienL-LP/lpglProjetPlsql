@@ -7,10 +7,10 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import main.App;
 
 public class ControleurVuePrincipale implements Initializable{
 
@@ -29,7 +29,7 @@ public class ControleurVuePrincipale implements Initializable{
 	@FXML 
 	private VBox vboxDroite;
 	
-	private MainApp mainApp;
+	private App mainApp;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -41,7 +41,7 @@ public class ControleurVuePrincipale implements Initializable{
 	private void programmerVol() throws IOException
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(MainApp.class.getResource("/vue/vueProgrammerVol.fxml"));
+		loader.setLocation(App.class.getResource("/vue/vueProgrammerVol.fxml"));
 		AnchorPane pane = (AnchorPane) loader.load();
 		
 		vboxDroite.getChildren().clear();
@@ -52,7 +52,7 @@ public class ControleurVuePrincipale implements Initializable{
 		System.out.println("Ouverture du fxml affecter");
 	}
 	
-	public void setMainApp(MainApp mainApp) {
+	public void setMainApp(App mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -60,7 +60,7 @@ public class ControleurVuePrincipale implements Initializable{
 	private void voirMembres() throws IOException
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(MainApp.class.getResource("/vue/vueVoirMembres.fxml"));
+		loader.setLocation(App.class.getResource("/vue/vueVoirMembres.fxml"));
 		AnchorPane pane = (AnchorPane) loader.load();
 		
 		vboxDroite.getChildren().clear();
@@ -75,7 +75,7 @@ public class ControleurVuePrincipale implements Initializable{
 	private void affecterMembres() throws IOException
 	{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(MainApp.class.getResource("/vue/vueAffecterMembres.fxml"));
+		loader.setLocation(App.class.getResource("/vue/vueAffecterMembres.fxml"));
 		AnchorPane pane = (AnchorPane) loader.load();
 		
 		vboxDroite.getChildren().clear();

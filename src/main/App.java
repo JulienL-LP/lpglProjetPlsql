@@ -1,24 +1,21 @@
-package controleur;
+package main;
 
+import controleur.ControleurVuePrincipale;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MainApp extends Application {
+public class App extends Application {
 
 	private Stage primaryStage;
 	private AnchorPane rootLayout;
-	
 
 	private SplitPane splitPane;
 	private AnchorPane rightLayout;
-	
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 
@@ -31,7 +28,7 @@ public class MainApp extends Application {
 	{
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("/vue/vuePrincipale.fxml"));
+			loader.setLocation(App.class.getResource("/vue/vuePrincipale.fxml"));
 			rootLayout = (AnchorPane) loader.load();
 			
 			Scene scene = new Scene(rootLayout);
