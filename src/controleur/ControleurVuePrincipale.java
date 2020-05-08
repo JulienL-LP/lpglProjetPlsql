@@ -1,88 +1,54 @@
 package controleur;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import main.App;
+import javafx.scene.Node;
+import javafx.scene.layout.BorderPane;
+import main.FXMLLoaded;
+import main.Window;
 
-public class ControleurVuePrincipale implements Initializable{
+public class ControleurVuePrincipale extends Controleur {
 
 	@FXML
-	private Button btnProgrammerVol;
-	
-	@FXML
-	private Button btnVoirLesMembres;
-	
-	@FXML
-	private Button btnAffecterPersonnel;
-	
-	@FXML
-	private AnchorPane pane;
-	
-	@FXML 
-	private VBox vboxDroite;
-	
-	private App mainApp;
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@FXML
-	private void programmerVol() throws IOException
-	{
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(App.class.getResource("/vue/vueProgrammerVol.fxml"));
-		AnchorPane pane = (AnchorPane) loader.load();
-		
-		vboxDroite.getChildren().clear();
-		vboxDroite.getChildren().add(pane);
-		ControleurVueProgrammerVol controller = loader.getController();
-		
-//		controller.setMainApp(this);
-		System.out.println("Ouverture du fxml affecter");
-	}
-	
-	public void setMainApp(App mainApp) {
-        this.mainApp = mainApp;
-    }
+	private BorderPane borderPane;
 
-	@FXML 
-	private void voirMembres() throws IOException
-	{
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(App.class.getResource("/vue/vueVoirMembres.fxml"));
-		AnchorPane pane = (AnchorPane) loader.load();
-		
-		vboxDroite.getChildren().clear();
-		vboxDroite.getChildren().add(pane);
-		ControleurVueVoirMembres controller = loader.getController();
-		
-//		controller.setMainApp(this);
-		System.out.println("Ouverture du fxml affecter");
-	}
-	
 	@FXML
-	private void affecterMembres() throws IOException
+	public void programmerVol() throws IOException
 	{
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(App.class.getResource("/vue/vueAffecterMembres.fxml"));
-		AnchorPane pane = (AnchorPane) loader.load();
-		
-		vboxDroite.getChildren().clear();
-		vboxDroite.getChildren().add(pane);
-		ControleurVueAffecterMembres controller = loader.getController();
-		
-//		controller.setMainApp(this);
-		System.out.println("Ouverture du fxml affecter");
+		changeRightPane(app.loadComponent(Window.PROGRAMMER_VOL));
+	}
+
+	@FXML
+	public void voirMembres() throws IOException
+	{
+		changeRightPane(app.loadComponent(Window.VOIR_MEMBRES_VOL));
+	}
+
+	@FXML
+	public void affecterMembres() throws IOException
+	{
+		changeRightPane(app.loadComponent(Window.AFFECTER_MEMBRES));
+	}
+
+	public void clearRightPane()
+	{
+		if (borderPane.getRight() != null)
+			borderPane.setRight(null);
+	}
+
+	public void changeRightPane(FXMLLoaded<Node, RightPaneControlleur> fxmlLoaded)
+	{
+		fxmlLoaded.getController().setVuePrincipale(this);
+		changeRightPane(fxmlLoaded.getNode());
+	}
+
+	public void changeRightPane(Node node)
+	{
+		clearRightPane();
+		borderPane.setRight(node);
+
+		app.getWindow().sizeToScene();
+		app.getWindow().centerOnScreen();
 	}
 }

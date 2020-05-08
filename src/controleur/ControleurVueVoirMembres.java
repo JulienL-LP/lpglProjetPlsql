@@ -1,21 +1,23 @@
 package controleur;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import modele.Vol;
 
-public class ControleurVueVoirMembres {
+public class ControleurVueVoirMembres extends RightPaneControlleur {
 
-    @FXML
-    private Label lblTitre;
+	@FXML
+	private ComboBox<Vol> cbxVol;
 
-    @FXML
-    private Button btnVoir;
+	@FXML
+	public void valider()
+	{
+		System.out.println("invocation Valider");
+	}
 
-    @FXML
-    private ComboBox<?> cbxVol;
-
-    @FXML
-    private Button btnAnnuler;
+	@FXML
+	public void annuler()
+	{
+		vuePrincipale.clearRightPane();
+	}
 }

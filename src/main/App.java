@@ -1,49 +1,56 @@
 package main;
 
-import controleur.ControleurVuePrincipale;
+import java.io.IOException;
+import java.net.URL;
+
+import controleur.Controleur;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lombok.Getter;
 
 public class App extends Application {
 
-	private Stage primaryStage;
-	private AnchorPane rootLayout;
+	@Getter
+	private Stage window;
 
-	private SplitPane splitPane;
-	private AnchorPane rightLayout;
+	public static void main(String[] args)
+	{
+		launch(args);
+	}
 
 	@Override
-	public void start(Stage primaryStage) {
-
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("VolApp");
-		initRootLayout();
-	}
-
-	public void initRootLayout()
+	public void start(Stage window) throws IOException
 	{
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(App.class.getResource("/vue/vuePrincipale.fxml"));
-			rootLayout = (AnchorPane) loader.load();
-			
-			Scene scene = new Scene(rootLayout);
-			primaryStage.setScene(scene);
-			
-			ControleurVuePrincipale controller = loader.getController();
-			controller.setMainApp(this);
-			primaryStage.show();
+		this.window = window;
+		window.setTitle("VolApp");
 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		FXMLLoaded<Parent, Controleur> fxmlLoaded = loadComponent(Window.MENU);
+
+		Scene scene = new Scene(fxmlLoaded.getNode());
+		window.setScene(scene);
+
+		window.show();
 	}
-	
-	public static void main(String[] args) {
-		launch(args);
+
+	public <T extends Node, T1 extends Controleur> FXMLLoaded<T, T1> loadComponent(Window window) throws IOException
+	{
+		FXMLLoaded<T, T1> fxmlLoaded = loadComponent(window.getUrl());
+
+		fxmlLoaded.getController().setApp(this);
+
+		return fxmlLoaded;
+	}
+
+	public static <T extends Node, T1> FXMLLoaded<T, T1> loadComponent(URL url) throws IOException
+	{
+		FXMLLoader loader = new FXMLLoader(url);
+
+		T node = loader.load();
+
+		return new FXMLLoaded<T, T1>(node, loader.getController());
 	}
 }
