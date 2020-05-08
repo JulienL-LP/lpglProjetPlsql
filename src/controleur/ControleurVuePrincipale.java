@@ -38,17 +38,18 @@ public class ControleurVuePrincipale implements Initializable{
 	}
 	
 	@FXML
-	private void programmerVol()
+	private void programmerVol() throws IOException
 	{
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("/vue/vueProgrammerVol.fxml"));
-			pane = (AnchorPane) loader.load();
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		System.out.println("Ouverture de la fenetre correspondante");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(MainApp.class.getResource("/vue/vueProgrammerVol.fxml"));
+		AnchorPane pane = (AnchorPane) loader.load();
+		
+		vboxDroite.getChildren().clear();
+		vboxDroite.getChildren().add(pane);
+		ControleurVueProgrammerVol controller = loader.getController();
+		
+//		controller.setMainApp(this);
+		System.out.println("Ouverture du fxml affecter");
 	}
 	
 	public void setMainApp(MainApp mainApp) {
@@ -56,9 +57,18 @@ public class ControleurVuePrincipale implements Initializable{
     }
 
 	@FXML 
-	private void voirMembres()
+	private void voirMembres() throws IOException
 	{
-		System.out.println("Ouverture du fxml correspondant");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(MainApp.class.getResource("/vue/vueVoirMembres.fxml"));
+		AnchorPane pane = (AnchorPane) loader.load();
+		
+		vboxDroite.getChildren().clear();
+		vboxDroite.getChildren().add(pane);
+		ControleurVueVoirMembres controller = loader.getController();
+		
+//		controller.setMainApp(this);
+		System.out.println("Ouverture du fxml affecter");
 	}
 	
 	@FXML
@@ -68,6 +78,7 @@ public class ControleurVuePrincipale implements Initializable{
 		loader.setLocation(MainApp.class.getResource("/vue/vueAffecterMembres.fxml"));
 		AnchorPane pane = (AnchorPane) loader.load();
 		
+		vboxDroite.getChildren().clear();
 		vboxDroite.getChildren().add(pane);
 		ControleurVueAffecterMembres controller = loader.getController();
 		
