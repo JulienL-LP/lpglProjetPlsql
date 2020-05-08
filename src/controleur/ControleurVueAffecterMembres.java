@@ -39,7 +39,6 @@ public class ControleurVueAffecterMembres implements Initializable{
 	@FXML
 	private void valider()
 	{
-		
 		System.out.println("invocation Valider");
 	}
 	
