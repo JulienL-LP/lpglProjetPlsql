@@ -29,7 +29,7 @@ public class DatabaseDepartVolDAO implements IDepartVolDAO {
 	@Override
 	public List<DepartVol> getList()
 	{
-		try (ResultSet res = database.getConnection().createStatement().executeQuery("SELECT * FROM Vol"))
+		try (ResultSet res = database.getConnection().createStatement().executeQuery("SELECT * FROM DepartVol"))
 		{
 			List<DepartVol> list = new ArrayList<>();
 

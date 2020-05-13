@@ -47,11 +47,10 @@ public class Database {
 
 	private void connect()
 	{
-
 		try
 		{
-			connection = DriverManager.getConnection("jdbc:" + databaseChoice + "://" + url + ":" + port + "/"
-					+ databaseName, user, password);
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@" + url + ":" + port + ":XE", user, password);
 		}
 		catch (Exception e)
 		{}

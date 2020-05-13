@@ -29,7 +29,7 @@ public class DatabasePersonnelDAO implements IPersonnelDAO {
 	@Override
 	public List<Personnel> getList()
 	{
-		try (ResultSet res = database.getConnection().createStatement().executeQuery("SELECT * FROM Vol"))
+		try (ResultSet res = database.getConnection().createStatement().executeQuery("SELECT * FROM Personnel"))
 		{
 			List<Personnel> list = new ArrayList<>();
 
