@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import lombok.NonNull;
@@ -82,8 +84,10 @@ public class SQL {
 	}
 
 	// MembresEquipage(noVol in varchar2, DateHeureDep in date)
-	public void membresEquipage(DepartVol departVol)
+	public List<String> membresEquipage(DepartVol departVol)
 	{
+		List<String> list = new ArrayList<>();
+
 		try
 		(
 			Statement s = database.getConnection().createStatement();
@@ -109,7 +113,10 @@ public class SQL {
 			try
 			{
 				array = reqDBMS.getArray(1);
-				Stream.of((Object[]) array.getArray()).forEach(System.out::println);
+				Stream.of((Object[]) array.getArray()).forEach(o -> {
+					if (o != null)
+						list.add(o.toString());
+				});
 			}
 			finally
 			{
@@ -123,5 +130,7 @@ public class SQL {
 		{
 			e.printStackTrace();
 		}
+
+		return list;
 	}
 }

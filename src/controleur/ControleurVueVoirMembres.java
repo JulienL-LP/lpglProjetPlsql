@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Alert.AlertType;
 import modele.DepartVol;
+import vue.alert.TextAreaDialog;
 
 public class ControleurVueVoirMembres extends RightPaneControlleur implements Initializable{
 
@@ -44,8 +45,16 @@ public class ControleurVueVoirMembres extends RightPaneControlleur implements In
 			return;
 		}
 
-		SQL.getInstance().membresEquipage(vol);
+		List<String> list = SQL.getInstance().membresEquipage(vol);
+
+		TextAreaDialog alert = new TextAreaDialog(String.join("\n", list));
+		alert.getEditor().setEditable(false);
+		alert.setTitle("Console");
+		alert.setContentText("Console DBMS : ");
+
 		vuePrincipale.clearRightPane();
+
+		alert.showAndWait();
 	}
 
 	@FXML
