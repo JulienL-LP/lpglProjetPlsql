@@ -42,6 +42,7 @@ public class ControleurVueProgrammerVol extends RightPaneControlleur implements 
 		List<Vol> listeVol = DatabaseVolDAO.getInstance().getList();
 		cbxListeVol.setItems(FXCollections.observableArrayList(listeVol));
 
+		cbxListeVol.setButtonCell(new VolCellFactory());
 		cbxListeVol.setCellFactory(new VolCellFactory());
 	}
 	

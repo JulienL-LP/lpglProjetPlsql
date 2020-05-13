@@ -6,22 +6,20 @@ import javafx.util.Callback;
 import main.Tools;
 import modele.DepartVol;
 
-public class DepartVolCellFactory implements Callback<ListView<DepartVol>, ListCell<DepartVol>> {
+public class DepartVolCellFactory extends ListCell<DepartVol> implements Callback<ListView<DepartVol>, ListCell<DepartVol>> {
 
 	@Override
 	public ListCell<DepartVol> call(ListView<DepartVol> view)
 	{
-		return new ListCell<DepartVol>() {
-
-			@Override
-			public void updateItem(DepartVol item, boolean empty)
-			{
-				super.updateItem(item, empty);
-				if (item == null || empty)
-					setGraphic(null);
-				else setText(item.getVol().getNoVol() + " " + item.getDateDepart().format(Tools.DATE_FORMAT));
-			}
-		};
+		return this;
 	}
 
+	@Override
+	public void updateItem(DepartVol item, boolean empty)
+	{
+		super.updateItem(item, empty);
+		if (item == null || empty)
+			setGraphic(null);
+		else setText(item.getVol().getNoVol() + " " + item.getDateDepart().format(Tools.DATE_FORMAT));
+	}
 }

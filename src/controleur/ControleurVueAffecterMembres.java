@@ -12,9 +12,9 @@ import database.SQL;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ComboBox;
 import modele.DepartVol;
 import modele.Personnel;
 
@@ -35,7 +35,10 @@ public class ControleurVueAffecterMembres extends RightPaneControlleur implement
 		List<Personnel> listeMembre = DatabasePersonnelDAO.getInstance().getList();
 		cbxMembre.setItems(FXCollections.observableArrayList(listeMembre));
 
+		cbxVol.setButtonCell(new DepartVolCellFactory());
 		cbxVol.setCellFactory(new DepartVolCellFactory());
+
+		cbxMembre.setButtonCell(new PersonnelCellFactory());
 		cbxMembre.setCellFactory(new PersonnelCellFactory());
 	}
 

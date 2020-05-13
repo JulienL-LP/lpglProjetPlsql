@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import controleur.cellfactory.DepartVolCellFactory;
 import database.DatabaseDepartVolDAO;
 import database.SQL;
 import javafx.collections.FXCollections;
@@ -23,6 +24,9 @@ public class ControleurVueVoirMembres extends RightPaneControlleur implements In
 	public void initialize(URL location, ResourceBundle resources) {
 		List<DepartVol> listeVol = DatabaseDepartVolDAO.getInstance().getList();
 		cbxVol.setItems(FXCollections.observableArrayList(listeVol));
+
+		cbxVol.setButtonCell(new DepartVolCellFactory());
+		cbxVol.setCellFactory(new DepartVolCellFactory());
 	}
 	
 	@FXML
