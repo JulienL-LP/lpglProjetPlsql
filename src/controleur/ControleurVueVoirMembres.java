@@ -45,6 +45,7 @@ public class ControleurVueVoirMembres extends RightPaneControlleur implements In
 		}
 
 		SQL.getInstance().membresEquipage(vol);
+		vuePrincipale.clearRightPane();
 	}
 
 	@FXML

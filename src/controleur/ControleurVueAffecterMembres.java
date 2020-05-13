@@ -59,6 +59,7 @@ public class ControleurVueAffecterMembres extends RightPaneControlleur implement
 		}
 
 		SQL.getInstance().affecterPersonnel(vol, personnel);
+		vuePrincipale.clearRightPane();
 	}
 
 	@FXML

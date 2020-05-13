@@ -87,7 +87,7 @@ public class SQL {
 		try
 		(
 			Statement s = database.getConnection().createStatement();
-			CallableStatement req = database.getConnection().prepareCall("{? = call MembresEquipage(?, ?)};");
+			CallableStatement req = database.getConnection().prepareCall("{call MembresEquipage(?, ?)};");
 			CallableStatement reqDBMS = database.getConnection().prepareCall("begin dbms_output.get_lines(?, 1000); end;")
 		)
 		{

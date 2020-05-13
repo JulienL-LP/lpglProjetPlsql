@@ -84,6 +84,7 @@ public class ControleurVueProgrammerVol extends RightPaneControlleur implements 
 		DepartVol departVol = new DepartVol(vol, date, Integer.parseInt(dureeStr));
 
 		SQL.getInstance().programmer(departVol);
+		vuePrincipale.clearRightPane();
 	}
 
 	@FXML
