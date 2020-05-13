@@ -9,7 +9,7 @@ public final class Tools {
 
 	private Tools() {}
 
-	public final static DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
+	public final static DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
 	public static final UnaryOperator<Change> INTEGER_FILTER = change -> change.getControlNewText().matches("([0-9][0-9]*)?") ? change : null;
 }

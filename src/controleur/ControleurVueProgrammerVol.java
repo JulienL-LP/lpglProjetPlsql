@@ -1,7 +1,7 @@
 package controleur;
 
 import java.net.URL;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class ControleurVueProgrammerVol extends RightPaneControlleur implements 
 		String dateStr = txtDate.getText().trim();
 		String dureeStr = txtDuree.getText().trim();
 
-		LocalDateTime date = null;
+		LocalDate date = null;
 		List<String> errors = new ArrayList<>();
 
 		if (vol == null)
@@ -61,7 +61,7 @@ public class ControleurVueProgrammerVol extends RightPaneControlleur implements 
 
 		try
 		{
-			date = LocalDateTime.parse(dateStr, Tools.DATE_FORMAT);
+			date = LocalDate.parse(dateStr, Tools.DATE_FORMAT);
 		}
 		catch (DateTimeParseException e)
 		{
