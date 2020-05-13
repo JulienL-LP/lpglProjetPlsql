@@ -33,7 +33,7 @@ public class SQL {
 	// Programmer(noVol in varchar2, DateHeureDep in date, DV in number)
 	public void programmer(DepartVol departVol)
 	{
-		try (PreparedStatement req = database.getConnection().prepareStatement("execute Programmer(?, ?, ?)"))
+		try (PreparedStatement req = database.getConnection().prepareCall("execute Programmer(?, ?, ?)"))
 		{
 			req.setString(1, departVol.getVol().getNoVol());
 			req.setTimestamp(2, Timestamp.valueOf(departVol.getDateDepart()));
@@ -50,7 +50,7 @@ public class SQL {
 	// AffecterPersonnel(noVol in varchar2, DateHeureDep in date, Mat in number)
 	public void affecterPersonnel(DepartVol departVol, Personnel personnel)
 	{
-		try (PreparedStatement req = database.getConnection().prepareStatement("execute AffecterPersonnel(?, ?, ?)"))
+		try (PreparedStatement req = database.getConnection().prepareCall("execute AffecterPersonnel(?, ?, ?)"))
 		{
 			req.setString(1, departVol.getVol().getNoVol());
 			req.setTimestamp(2, Timestamp.valueOf(departVol.getDateDepart()));
@@ -67,7 +67,7 @@ public class SQL {
 	// MAJDuree(noVol in varchar2, DateHeureDep in date, DV in number)
 	public void majDuree(DepartVol departVol)
 	{
-		try (PreparedStatement req = database.getConnection().prepareStatement("execute MAJDuree(?, ?, ?)"))
+		try (PreparedStatement req = database.getConnection().prepareCall("execute MAJDuree(?, ?, ?)"))
 		{
 			req.setString(1, departVol.getVol().getNoVol());
 			req.setTimestamp(2, Timestamp.valueOf(departVol.getDateDepart()));
