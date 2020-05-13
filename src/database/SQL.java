@@ -87,8 +87,10 @@ public class SQL {
 		try
 		(
 			Statement s = database.getConnection().createStatement();
-			CallableStatement req = database.getConnection().prepareCall("{call MembresEquipage(?, ?)};");
-			CallableStatement reqDBMS = database.getConnection().prepareCall("begin dbms_output.get_lines(?, 1000); end;")
+			CallableStatement req = database.getConnection().prepareCall("{call MembresEquipage(?, ?)}");
+			CallableStatement reqDBMS = database.getConnection().prepareCall(
+					"declare num integer := 1000;"
+					+ "begin dbms_output.get_lines(?, num); end;")
 		)
 		{
 			s.executeUpdate("begin dbms_output.enable(); end;");
