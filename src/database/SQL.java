@@ -84,23 +84,29 @@ public class SQL {
 	// MembresEquipage(noVol in varchar2, DateHeureDep in date)
 	public void membresEquipage(DepartVol departVol)
 	{
-		try (Statement s = database.getConnection().createStatement();
-			CallableStatement req = database.getConnection().prepareCall("{call  MembresEquipage(?, ?)}"))
+		try
+		(
+			Statement s = database.getConnection().createStatement();
+			CallableStatement req = database.getConnection().prepareCall("{? = call MembresEquipage(?, ?)};");
+			CallableStatement reqDBMS = database.getConnection().prepareCall("begin dbms_output.get_lines(?, 1000); end;")
+		)
 		{
 			s.executeUpdate("begin dbms_output.enable(); end;");
-
-			req.registerOutParameter(1, Types.ARRAY, "DBMSOUTPUT_LINESARRAY");
 
 			req.setString(1, departVol.getVol().getNoVol());
 			req.setDate(2, Date.valueOf(departVol.getDateDepart()));
 
 			req.execute();
 
+			reqDBMS.registerOutParameter(1, Types.ARRAY, "DBMSOUTPUT_LINESARRAY");
+
+			reqDBMS.execute();
+
 			Array array = null;
 
 			try
 			{
-				array = req.getArray(1);
+				array = reqDBMS.getArray(1);
 				Stream.of((Object[]) array.getArray()).forEach(System.out::println);
 			}
 			finally
