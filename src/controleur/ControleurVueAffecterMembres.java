@@ -1,13 +1,12 @@
 package controleur;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import controleur.cellfactory.DepartVolCellFactory;
 import controleur.cellfactory.PersonnelCellFactory;
-import database.DatabaseDepartVolDAO;
-import database.DatabasePersonnelDAO;
 import database.SQL;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -29,16 +28,21 @@ public class ControleurVueAffecterMembres extends RightPaneControlleur implement
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
 	{
-		List<DepartVol> listeVol = DatabaseDepartVolDAO.getInstance().getList();
+		List<DepartVol> listeVol = new ArrayList<>();
+		//List<DepartVol> listeVol = DatabaseDepartVolDAO.getInstance().getList();
 		cbxVol.setItems(FXCollections.observableArrayList(listeVol));
 
-		List<Personnel> listeMembre = DatabasePersonnelDAO.getInstance().getList();
+		List<Personnel> listeMembre = new ArrayList<>();
+		listeMembre.add(new Personnel(1, "A", "B", "C"));
+		listeMembre.add(new Personnel(2, "D", "E", "F"));
+		listeMembre.add(new Personnel(3, "G", "H", "I"));
+		//List<Personnel> listeMembre = DatabasePersonnelDAO.getInstance().getList();
 		cbxMembre.setItems(FXCollections.observableArrayList(listeMembre));
 
-		cbxVol.setButtonCell(new DepartVolCellFactory());
+		cbxVol.setButtonCell(new DepartVolCellFactory().call(null));
 		cbxVol.setCellFactory(new DepartVolCellFactory());
 
-		cbxMembre.setButtonCell(new PersonnelCellFactory());
+		cbxMembre.setButtonCell(new PersonnelCellFactory().call(null));
 		cbxMembre.setCellFactory(new PersonnelCellFactory());
 	}
 

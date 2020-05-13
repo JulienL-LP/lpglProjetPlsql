@@ -25,7 +25,7 @@ public class ControleurVueVoirMembres extends RightPaneControlleur implements In
 		List<DepartVol> listeVol = DatabaseDepartVolDAO.getInstance().getList();
 		cbxVol.setItems(FXCollections.observableArrayList(listeVol));
 
-		cbxVol.setButtonCell(new DepartVolCellFactory());
+		cbxVol.setButtonCell(new DepartVolCellFactory().call(null));
 		cbxVol.setCellFactory(new DepartVolCellFactory());
 	}
 	

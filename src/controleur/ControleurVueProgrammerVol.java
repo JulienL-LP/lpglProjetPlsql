@@ -42,7 +42,7 @@ public class ControleurVueProgrammerVol extends RightPaneControlleur implements 
 		List<Vol> listeVol = DatabaseVolDAO.getInstance().getList();
 		cbxListeVol.setItems(FXCollections.observableArrayList(listeVol));
 
-		cbxListeVol.setButtonCell(new VolCellFactory());
+		cbxListeVol.setButtonCell(new VolCellFactory().call(null));
 		cbxListeVol.setCellFactory(new VolCellFactory());
 	}
 	
@@ -65,8 +65,6 @@ public class ControleurVueProgrammerVol extends RightPaneControlleur implements 
 		}
 		catch (DateTimeParseException e)
 		{
-			e.printStackTrace();
-			System.out.println(dateStr);
 			errors.add("Vous devez une date valide");
 		}
 
