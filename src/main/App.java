@@ -53,14 +53,5 @@ public class App extends Application {
 
 		return new FXMLLoaded<T, T1>(node, loader.getController());
 	}
-
-	public Stage getWindow() {
-		return window;
-	}
-
-	public void setWindow(Stage window) {
-		this.window = window;
-	}
-	
 	
 }

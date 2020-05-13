@@ -16,7 +16,6 @@ public class Database {
 	private String port;
 	private String user;
 	private String password;
-	private String databaseName;
 
 	private Connection connection;
 
@@ -36,8 +35,6 @@ public class Database {
 			this.port = databaseConfig.getProperty("db.port", "3306");
 			this.user = databaseConfig.getProperty("db.user", "root");
 			this.password = databaseConfig.getProperty("db.password", "");
-			this.databaseName = databaseConfig.getProperty("db.databaseName", "root");
-
 		}
 		catch (IOException e)
 		{
@@ -50,7 +47,7 @@ public class Database {
 		try
 		{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@" + url + ":" + port + ":XE", user, password);
+            connection = DriverManager.getConnection("jdbc:" + databaseChoice + ":thin:@" + url + ":" + port + ":XE", user, password);
 		}
 		catch (Exception e)
 		{}

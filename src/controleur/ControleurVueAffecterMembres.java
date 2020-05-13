@@ -4,12 +4,17 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import controleur.cellfactory.DepartVolCellFactory;
+import controleur.cellfactory.PersonnelCellFactory;
 import database.DatabaseDepartVolDAO;
 import database.DatabasePersonnelDAO;
+import database.SQL;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import modele.DepartVol;
 import modele.Personnel;
 
@@ -28,13 +33,29 @@ public class ControleurVueAffecterMembres extends RightPaneControlleur implement
 		cbxVol.setItems(FXCollections.observableArrayList(listeVol));
 
 		List<Personnel> listeMembre = DatabasePersonnelDAO.getInstance().getList();
-		cbxMembre.setItems(FXCollections.observableArrayList(listeMembre));	
+		cbxMembre.setItems(FXCollections.observableArrayList(listeMembre));
+
+		cbxVol.setCellFactory(new DepartVolCellFactory());
+		cbxMembre.setCellFactory(new PersonnelCellFactory());
 	}
 
 	@FXML
 	public void valider()
 	{
-		System.out.println("invocation Valider");
+		DepartVol vol = cbxVol.getValue();
+		Personnel personnel = cbxMembre.getValue();
+
+		if (vol == null || personnel == null)
+		{
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Attention");
+			alert.setContentText("Toutes les informations doivent être rempli");
+			alert.showAndWait();
+
+			return;
+		}
+
+		SQL.getInstance().affecterPersonnel(vol, personnel);
 	}
 
 	@FXML
