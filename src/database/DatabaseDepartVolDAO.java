@@ -36,7 +36,7 @@ public class DatabaseDepartVolDAO implements IDepartVolDAO {
 			while (res.next())
 			{
 				list.add(new DepartVol(DatabaseVolDAO.getInstance().getById(res.getString("NoVol")),
-						res.getTimestamp("DateHeureDepart").toLocalDateTime(),
+						res.getDate("DateHeureDepart").toLocalDate(),
 						res.getInt("DureeVol")));
 			}
 

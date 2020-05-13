@@ -1,6 +1,6 @@
 package modele;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -14,6 +14,6 @@ import lombok.Setter;
 public class DepartVol {
 
 	private Vol vol;
-	private LocalDateTime dateDepart;
+	private LocalDate dateDepart;
 	private int dureeVol;
 }

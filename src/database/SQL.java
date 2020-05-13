@@ -2,10 +2,10 @@ package database;
 
 import java.sql.Array;
 import java.sql.CallableStatement;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.stream.Stream;
 
@@ -36,7 +36,7 @@ public class SQL {
 		try (PreparedStatement req = database.getConnection().prepareCall("execute Programmer(?, ?, ?)"))
 		{
 			req.setString(1, departVol.getVol().getNoVol());
-			req.setTimestamp(2, Timestamp.valueOf(departVol.getDateDepart()));
+			req.setDate(2, Date.valueOf(departVol.getDateDepart()));
 			req.setInt(3, departVol.getDureeVol());
 
 			req.execute();
@@ -53,7 +53,7 @@ public class SQL {
 		try (PreparedStatement req = database.getConnection().prepareCall("execute AffecterPersonnel(?, ?, ?)"))
 		{
 			req.setString(1, departVol.getVol().getNoVol());
-			req.setTimestamp(2, Timestamp.valueOf(departVol.getDateDepart()));
+			req.setDate(2, Date.valueOf(departVol.getDateDepart()));
 			req.setInt(3, personnel.getMatricule());
 
 			req.execute();
@@ -70,7 +70,7 @@ public class SQL {
 		try (PreparedStatement req = database.getConnection().prepareCall("execute MAJDuree(?, ?, ?)"))
 		{
 			req.setString(1, departVol.getVol().getNoVol());
-			req.setTimestamp(2, Timestamp.valueOf(departVol.getDateDepart()));
+			req.setDate(2, Date.valueOf(departVol.getDateDepart()));
 			req.setInt(3, departVol.getDureeVol());
 
 			req.execute();
@@ -92,7 +92,7 @@ public class SQL {
 			req.registerOutParameter(1, Types.ARRAY, "DBMSOUTPUT_LINESARRAY");
 
 			req.setString(1, departVol.getVol().getNoVol());
-			req.setTimestamp(2, Timestamp.valueOf(departVol.getDateDepart()));
+			req.setDate(2, Date.valueOf(departVol.getDateDepart()));
 
 			req.execute();
 
