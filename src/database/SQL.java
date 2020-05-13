@@ -33,7 +33,7 @@ public class SQL {
 	// Programmer(noVol in varchar2, DateHeureDep in date, DV in number)
 	public void programmer(DepartVol departVol)
 	{
-		try (PreparedStatement req = database.getConnection().prepareCall("execute Programmer(?, ?, ?)"))
+		try (PreparedStatement req = database.getConnection().prepareCall("{call Programmer(?, ?, ?)}"))
 		{
 			req.setString(1, departVol.getVol().getNoVol());
 			req.setDate(2, Date.valueOf(departVol.getDateDepart()));
@@ -50,7 +50,7 @@ public class SQL {
 	// AffecterPersonnel(noVol in varchar2, DateHeureDep in date, Mat in number)
 	public void affecterPersonnel(DepartVol departVol, Personnel personnel)
 	{
-		try (PreparedStatement req = database.getConnection().prepareCall("execute AffecterPersonnel(?, ?, ?)"))
+		try (PreparedStatement req = database.getConnection().prepareCall("{call AffecterPersonnel(?, ?, ?)}"))
 		{
 			req.setString(1, departVol.getVol().getNoVol());
 			req.setDate(2, Date.valueOf(departVol.getDateDepart()));
@@ -67,7 +67,7 @@ public class SQL {
 	// MAJDuree(noVol in varchar2, DateHeureDep in date, DV in number)
 	public void majDuree(DepartVol departVol)
 	{
-		try (PreparedStatement req = database.getConnection().prepareCall("execute MAJDuree(?, ?, ?)"))
+		try (PreparedStatement req = database.getConnection().prepareCall("{call MAJDuree(?, ?, ?)}"))
 		{
 			req.setString(1, departVol.getVol().getNoVol());
 			req.setDate(2, Date.valueOf(departVol.getDateDepart()));
@@ -85,7 +85,7 @@ public class SQL {
 	public void membresEquipage(DepartVol departVol)
 	{
 		try (Statement s = database.getConnection().createStatement();
-			CallableStatement req = database.getConnection().prepareCall("execute MembresEquipage(?, ?)"))
+			CallableStatement req = database.getConnection().prepareCall("{call  MembresEquipage(?, ?)}"))
 		{
 			s.executeUpdate("begin dbms_output.enable(); end;");
 
