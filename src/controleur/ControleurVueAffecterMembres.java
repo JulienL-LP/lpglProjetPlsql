@@ -12,9 +12,8 @@ import database.SQL;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
+import main.App;
 import modele.DepartVol;
 import modele.Personnel;
 
@@ -50,16 +49,14 @@ public class ControleurVueAffecterMembres extends RightPaneControlleur implement
 
 		if (vol == null || personnel == null)
 		{
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Attention");
-			alert.setContentText("Toutes les informations doivent être rempli");
-			alert.showAndWait();
-
+			App.showWarning("Toutes les informations doivent être rempli");
 			return;
 		}
 
 		SQL.getInstance().affecterPersonnel(vol, personnel);
 		vuePrincipale.clearRightPane();
+
+		App.showSuccess("Le membre a bien été affecté");
 	}
 
 	@FXML

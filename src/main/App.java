@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import lombok.Getter;
 
@@ -53,5 +55,23 @@ public class App extends Application {
 
 		return new FXMLLoaded<T, T1>(node, loader.getController());
 	}
-	
+
+	public static void showDialog(AlertType type, String title, String message)
+	{
+		Alert alert = new Alert(type);
+		alert.setTitle(title);
+		alert.setContentText(message);
+
+		alert.showAndWait();
+	}
+
+	public static void showWarning(String message)
+	{
+		showDialog(AlertType.WARNING, "Attention", message);
+	}
+
+	public static void showSuccess(String message)
+	{
+		showDialog(AlertType.INFORMATION, "Succès", message);
+	}
 }

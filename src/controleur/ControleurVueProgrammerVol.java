@@ -13,12 +13,11 @@ import database.SQL;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.util.converter.IntegerStringConverter;
+import main.App;
 import main.Tools;
 import modele.DepartVol;
 import modele.Vol;
@@ -73,11 +72,7 @@ public class ControleurVueProgrammerVol extends RightPaneControlleur implements 
 
 		if (!errors.isEmpty())
 		{
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Attention");
-			alert.setContentText(String.join("\n", errors));
-			alert.showAndWait();
-
+			App.showWarning(String.join("\n", errors));
 			return;
 		}
 
@@ -85,6 +80,8 @@ public class ControleurVueProgrammerVol extends RightPaneControlleur implements 
 
 		SQL.getInstance().programmer(departVol);
 		vuePrincipale.clearRightPane();
+
+		App.showSuccess("Le vol a bien été programmé");
 	}
 
 	@FXML

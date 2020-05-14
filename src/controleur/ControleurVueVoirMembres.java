@@ -10,9 +10,8 @@ import database.SQL;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Alert.AlertType;
+import main.App;
 import modele.DepartVol;
 import vue.alert.TextAreaDialog;
 
@@ -37,11 +36,7 @@ public class ControleurVueVoirMembres extends RightPaneControlleur implements In
 
 		if (vol == null)
 		{
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Attention");
-			alert.setContentText("Le vol doit être donné");
-			alert.showAndWait();
-
+			App.showWarning("Le vol doit être donné");
 			return;
 		}
 
@@ -62,6 +57,4 @@ public class ControleurVueVoirMembres extends RightPaneControlleur implements In
 	{
 		vuePrincipale.clearRightPane();
 	}
-
-	
 }
